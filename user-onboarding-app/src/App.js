@@ -82,12 +82,20 @@ function App() {
     getUsers()
   }, [])
 
+  useEffect(() => {
+    formSchema.isValid(formValues).then(valid => {
+      setDisabled(!valid)
+    })
+  }, [formValues])
+
   return (
     <div className="App">  
       <Form 
         values={formValues}
         inputChange={inputChange}
         submit={submit}
+        disabled={disabled}
+        errors={formErrors}
       /> 
       {
         users.map(user => {

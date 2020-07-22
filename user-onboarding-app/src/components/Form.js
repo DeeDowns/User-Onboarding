@@ -5,8 +5,8 @@ function Form(props) {
         values,
         inputChange,
         submit,
-        // errors,
-        // disabled,
+        errors,
+        disabled,
     } = props
 
     const onSubmit = event => {
@@ -26,12 +26,15 @@ function Form(props) {
                 <label>Name
                     <input
                         value={values.name} 
-                        onChange={(e) => onInputChange(e)}
+                        onChange={onInputChange}
                         name='name'
                         type='text'
                     />
                 </label>
-                <button>Sumbmit</button>
+                <button disabled={disabled}>Submit</button>
+                <div>
+                    <div>{errors.name}</div>
+                </div>
             </div>
         </form>
     )
