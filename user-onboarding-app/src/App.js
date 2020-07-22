@@ -19,6 +19,8 @@ const initialFormErrors = {
   name: '',
   email: '',
   password: '',
+  termsOfService: false
+
 }
 const initialUsers = []
 const initialDisabled = true
@@ -77,6 +79,21 @@ function App() {
       ...formValues,
         [name]: isChecked,
     })
+    yup
+      .reach(formSchema, name)
+      .validate(isChecked)
+      .then(valid => {
+        setFormErrors({
+          ...formErrors,
+          [name]: false
+        })
+      })
+      .catch(err => {
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0]
+        })
+      })
   }
 
   const submit = () => {
