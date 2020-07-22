@@ -26,7 +26,7 @@ function Form(props) {
                 <label>Name
                     <input
                         value={values.name} 
-                        onChange={onInputChange}
+                        onChange={(e) => onInputChange(e)}
                         name='name'
                         type='text'
                     />

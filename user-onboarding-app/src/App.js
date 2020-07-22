@@ -53,6 +53,7 @@ function App() {
   }
 
   const inputChange = (name, value) => {
+    setFormValues({...formValues, [name]: value})
     yup
       .reach(formSchema, name)
       .validate(value)
