@@ -9,15 +9,16 @@ import User from './components/User'
 
 const initialFormValues = {
   name: '',
-  // email: '',
-  // password: '',
-  // termsOfService: false,
+  email: '',
+  password: '',
+  termsOfService: false
+  
 }
 
 const initialFormErrors = {
   name: '',
-  // email: '',
-  // password: '',
+  email: '',
+  password: '',
 }
 const initialUsers = []
 const initialDisabled = true
@@ -43,7 +44,7 @@ function App() {
   const postNewUser = newUser => {
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
-        console.log(res)
+        console.log(res.data.data)
         setUsers([ res.data, ...users ])
         setFormValues(initialFormValues)
       })
@@ -71,9 +72,18 @@ function App() {
       })
   }
 
+  const checkboxChange = (name, isChecked) => {
+    setFormValues({
+      ...formValues,
+        [name]: isChecked,
+    })
+  }
+
   const submit = () => {
     const newUser = {
-      name: formValues.name.trim()
+      name: formValues.name.trim(),
+      email: formValues.email.trim(),
+      password: formValues.password.trim(),
     }
     postNewUser(newUser)
   }
@@ -93,6 +103,7 @@ function App() {
       <Form 
         values={formValues}
         inputChange={inputChange}
+        checkboxChange={checkboxChange}
         submit={submit}
         disabled={disabled}
         errors={formErrors}
