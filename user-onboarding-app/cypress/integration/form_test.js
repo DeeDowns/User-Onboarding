@@ -7,15 +7,44 @@
 // - [ ] Check for form validation if an input is left empty
 
 
-describe('inputs', () => {
+describe('filling out the form', () => {
     it('can navigate to the site', () => {
         cy.visit('http://localhost:3000/')
         cy.url().should('include', 'localhost')
+    })
+
+    it('submit button is disabled', () => {
+        cy.get('button').should('be.disabled')
     })
 
     it('can get the Name input and type a name in it', () => {
         cy.get('input[name="name"]')
             .type('Dee')
             .should('have.value', 'Dee')
+    })
+
+    
+    it('can get the Email input and type an email address in it', () => {
+        cy.get('input[name="email"]')
+            .type('dee@email.com')
+            .should('have.value', 'dee@email.com')
+    })
+
+    
+    it('can get the Password input and type a password in it', () => {
+        cy.get('input[name="password"]')
+            .type('abcdef')
+            .should('have.value', 'abcdef')
+    })
+
+    it('can check the terms of service checkbox', () => {
+        cy.get('input[name="termsOfService"]')
+            .check()
+            // .type('abcdef')
+            // .should('have.value', 'abcdef')
+    })
+
+    it('submit button is not disabled', () => {
+        cy.get('button').should('not.be.disabled')
     })
 })
