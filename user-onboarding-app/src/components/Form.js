@@ -65,7 +65,7 @@ function Form(props) {
                     />
                 </label>
                 <button disabled={disabled}>Submit</button>
-                <div>
+                <div className="form-errors">
                     <div>{errors.name}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
